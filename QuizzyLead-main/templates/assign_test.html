@@ -1,0 +1,75 @@
+
+{% from "nav.html" import links %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Quiz App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'style.css') }}"
+  </head>
+  <body>
+    <div class="header mb-2">
+        {{ links(user) }}
+    </div>
+
+    <div class="question container border text-light p-3">
+      <table class="table table-hover text-light">
+        <thead>
+            <tr>
+                <th scope="col">
+                    <h3>Assign Questions to Students</h3>
+                    {% if error %}
+                    <h4 style="color: yellow">{{ error }}</h4>
+                    {% endif %}
+                    <hr />
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for test in tests %}
+            <tr class="text-light">
+                <td>
+                    <div class="d-grid gap-2">
+                        <h3>{{ test.title }}</h3>
+                        <form method="POST" action="{{ url_for('assign_test') }}">
+                            <input type="hidden" name="test_id" value="{{ test.id }}">
+                            <input type="hidden" name="test_teacher" value="{{ test.teacher_name }}">
+                            <label for="klass">Class:</label>
+                            <select name="klass" id="klass" class="custom-select">
+                                <option value="select">select</option>
+                                <option value="KG1">KG1</option>
+                                <option value="KG2">KG2</option>
+                                <option value="NUR1">Nursery 1</option>
+                                <option value="NUR2">Nursery 2</option>
+                                <option value="PRY1">Primary 1</option>
+                                <option value="PRY2">Primary 2</option>
+                                <option value="PRY3">Primary 3</option>
+                                <option value="PRY4">Primary 4</option>
+                                <option value="PRY5">Primary 5</option>
+                                <option value="PRY6">Primary 6</option>
+                            </select>
+                            <button class="btn btn-outline-dark" type="submit" {% if test.assigned_test %}disabled{% endif %}>
+                                {% if test.assigned_test %}
+                                Test Assigned to {{ test.assigned_klass }}
+                                {% else %}
+                                Assign
+                                {% endif %}
+                            </button>
+                        </form>                       
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+      
+    </div>    
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+
+  </body>
+</html>

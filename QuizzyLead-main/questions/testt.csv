@@ -1,0 +1,11 @@
+qnumber,question,option1,option2,option3,option4,answer,
+1,The capital of France?,Paris,Madrid,Berlin,London,A,FALSE
+2,The chemical symbol for gold?,Au,Ag,Hg,Pt,B,FALSE
+3,The chemical symbol for oxygen?,O,N,H,He,A,FALSE
+4,The currency of Japan?,Yuan,Yen,Euro,Dollar,C,FALSE
+5,The highest mountain in the world?,K2,Kilimanjaro,Mount Everest,Matterhorn,D,FALSE
+6,The largest mammal in the world?,Elephant,Polar bear,Blue whale,Giraffe,A,FALSE
+7,The largest planet in our solar system?,Venus,Neptune,Jupiter,Mars,B,FALSE
+8,The name of the tallest mammal in the world?,Elephant,Giraffe,Rhino,Hippo,A,FALSE
+9,The smallest country in the world by land area?,Monaco,Nauru,Palau,Vatican City,C,FALSE
+10,The smallest ocean in the world?,Atlantic,Arctic,Indian,Pacific,D,FALSE

@@ -1,0 +1,181 @@
+{% macro links(user) %}
+<ul class="nav nav-tabs p-3 bg-dark justify-content-center">
+    <li class="nav-item">
+        <a class="nav-link text-light" aria-current="page" href="/">Home</a>
+    </li>
+    {% if not user %}
+    <li class="nav-item">
+        <a class="nav-link text-light" href="{{ url_for('login') }}">Login</a>
+    </li>
+    {% endif %} 
+    {% if user %}
+    <li class="nav-item">
+        <a class="nav-link text-light" href="{{ url_for('dashboard') }}">Dashboard</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-light" href="{{ url_for('logout') }}">Logout</a>
+    </li>
+    {% endif %} 
+    {% if user %}
+        <li class="nav-item">
+            <a class="nav-link text-warning" href="{{ url_for('dashboard') }}">
+                {{ user['name'] }} : Logged in as
+                {% if user['klass'] in ["KG1", "KG2", "NUR1", "NUR2", "PRY1", "PRY2", "PRY3", "PRY4", "PRY5", "PRY6"] %}
+                    student
+                {% else %}
+                    {{ user['role'] }}
+                {% endif %}
+            </a>
+        </li>
+    {% endif %}
+
+</ul>
+
+{% endmacro %} {% macro dashboard(user) %}
+
+<div class="container p-5 my-5 border">
+    <div class="row">
+
+        {% if user and user['role'] == "admin" %}
+        <div class="col">
+            <div class="card">
+                <img class="card-img-top" src="static/e13.png" alt="Card image" />
+                <div class="d-grid">
+                    <a href="allusers" class="btn btn-success btn-block">
+                        View all Users
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <img class="card-img-top" src="static/e13.png" alt="Card image" />
+                <div class="d-grid">
+                    <a href="register_student" class="btn btn-success btn-block">
+                        Add Student
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <img class="card-img-top" src="static/e13.png" alt="Card image" />
+                <div class="d-grid">
+                    <a href="register" class="btn btn-success btn-block">
+                        Add Teacher
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <img class="card-img-top" src="static/e13.png" alt="Card image" />
+                <div class="d-grid">
+                    <a href="resetpassword" class="btn btn-success btn-block">
+                        Reset Password
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <img class="card-img-top" src="static/e13.png" alt="Card image" />
+                <div class="d-grid">
+                    <a href="deleteuser" class="btn btn-success btn-block">
+                        Delete User
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        {% endif %} {% if user and user['role'] == "teacher" %}
+        <div class="col">
+            <div class="card">
+                <img class="card-img-top" src="static/e13.png" alt="Card image" />
+                <div class="d-grid">
+                    <a href="create_test" class="btn btn-success btn-block">
+                        Create Quiz
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <img class="card-img-top" src="static/e13.png" alt="Card image" />
+                <div class="d-grid">
+                    <a href="viewquiz" class="btn btn-success btn-block">
+                        View Quiz
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <img class="card-img-top" src="static/e13.png" alt="Card image" />
+                <div class="d-grid">
+                    <a href="delete_test" class="btn btn-success btn-block">
+                        Delete Quiz
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <img class="card-img-top" src="static/e13.png" alt="Card image" />
+                <div class="d-grid">
+                    <a href="assign_test" class="btn btn-success btn-block">
+                        Assign Test
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <img class="card-img-top" src="static/e13.png" alt="Card image" />
+                <div class="d-grid">
+                    <a href="student_results" class="btn btn-success btn-block">
+                        View Student Results
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        {% endif %} 
+        {% if user and user['klass'] in ["KG1", "KG2", "NUR1", "NUR2", "PRY1", "PRY2", "PRY3", "PRY4", "PRY5", "PRY6"] %}
+        
+        <div class="col">
+            <div class="card">
+                <img class="card-img-top" src="static/e13.png" alt="Card image" />
+                <div class="d-grid">
+                    <a href="take_test" class="btn btn-success btn-block">
+                        Take Test
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <img class="card-img-top" src="static/e13.png" alt="Card image" />
+                <div class="d-grid">
+                    <a href="test_given" class="btn btn-success btn-block">
+                        View given tests
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <img class="card-img-top" src="static/e13.png" alt="Card image" />
+                <div class="d-grid">
+                    <a href="student_results" class="btn btn-success btn-block">
+                        View Student Results
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+{% endmacro %}
+
